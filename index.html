@@ -3,18 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--google icons close button-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,100,0,200"
+    />
+    <!--my stylesheet-->
     <link rel="stylesheet" href="styles.css" />
     <title>Speed Game</title>
   </head>
   <body>
-    <h1>Speed Game</h1>
-    <p>start</p>
-    <div class="circles-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    <header>
+      <h1>Balloon Popper Speed Game</h1>
+      <h3 class="start-stop-btn">Start Game</h3>
+    </header>
+    <div class="game-environment">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
     </div>
+    <div class="balloon-container"></div>
+    <div class="score-and-instruction">
+      <p class="instruction">Click the red balloon to pop</p>
+      <h3 class="score">Score: <span>0</span></h3>
+    </div>
+    <!--From Margit's JS tricks classwork-->
+    <div class="overlay">
+      <div class="modal">
+        <h2>Game Over</h2>
+        <div
+          class="tenor-gif-embed loser-gif"
+          data-postid="13012226"
+          data-share-method="host"
+          data-aspect-ratio="1"
+          data-width="100%"
+        >
+          <a
+            href="https://tenor.com/view/cute-dragon-stick-tougue-out-gif-13012226"
+            >Cute Dragon Stick Tougue Out GIF</a
+          >from
+          <a href="https://tenor.com/search/cute+dragon-gifs"
+            >Cute Dragon GIFs</a
+          >
+        </div>
+        <span class="material-symbols-outlined close-modal"> close </span>
+      </div>
+    </div>
+    <!--Sound Effects from <a href="https://pixabay.com/">Pixabay</a>-->
+    <audio
+      id="balloon-pop-audio"
+      src="assets/audio/balloon-pop-48030.mp3"
+    ></audio>
+    <audio
+      id="laugh-audio"
+      src="assets/audio/chipmunks-hehehei-113723.mp3"
+    ></audio>
+    <audio id="background-audio" src="assets/audio/World-Map1.mp3"></audio>
     <script src="script.js"></script>
+    <script
+      type="text/javascript"
+      async
+      src="https://tenor.com/embed.js"
+    ></script>
   </body>
 </html>
