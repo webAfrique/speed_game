@@ -3,11 +3,13 @@ const balloonContainer = document.querySelector(".balloon-container")
 const displayScore = document.querySelector(".score span")
 const score_info_container = document.querySelector(".score-and-instruction")
 const startStopBtn = document.querySelector(".start-stop-btn")
+const modalMsg = document.querySelector('.modal p')
 const closeModalBtn = document.querySelector('.close-modal')
 const overlay = document.querySelector('.overlay')
 const balloonPopAudio = document.querySelector('#balloon-pop-audio')
 const laughAudio = document.querySelector('#laugh-audio')
 const backgroundAudio = document.querySelector('#background-audio')
+const applauseAudio = document.querySelector('#applause-audio')
 let score 
 let intervalId
 let microSeconds 
@@ -63,7 +65,7 @@ for (let i = num; i > 0; i--) {
   }
   else {
       balloon.style.cssText = gameBalloonStyles(173, 255, 47)
-      balloon.addEventListener('click', modalShow)
+      balloon.addEventListener('click', showLoserModal)
   }
     balloonContainer.append(balloon)
   }
@@ -100,11 +102,10 @@ function clearStartScreen() {
 }
 
 function runGame() {
-  
   //end the game when timer interval is 100 ms or below
   if (microSeconds <= 100) {
     clearInterval(intervalId)
-    modalShow()
+    showLoserModal()
     return
   }
 
@@ -123,19 +124,38 @@ function initGame(){
   microSeconds = 2000
   displayScore.textContent = score
   backgroundAudio.play()
-  backgroundAudio.volume = 0.4
+  backgroundAudio.volume = 0.5
   backgroundAudio.loop = true
   runGame()
 }
 
-function modalShow() {
-  clearInterval(intervalId)  
+function showWinnerModal() {
+  clearInterval(intervalId) 
+  modalMsg.textContent = `You popped ${score} balloons!` 
+  document.querySelector('.loser-gif').style.display = 'none'
+  document.querySelector('.winner-gif').style.display = 'block'
   overlay.classList.add('visible')
   backgroundAudio.pause()
   backgroundAudio.currentTime = 0
-  laughAudio.play()
-  }
+  applauseAudio.play()
+}
 
+function showLoserModal() {
+  if (score >= 5) {
+    showWinnerModal()
+    return
+  }
+  else {
+    clearInterval(intervalId) 
+    modalMsg.textContent = 'Game Over' 
+    document.querySelector('.winner-gif').style.display = 'none'
+    document.querySelector('.loser-gif').style.display = 'block'
+    overlay.classList.add('visible')
+    backgroundAudio.pause()
+    backgroundAudio.currentTime = 0
+    laughAudio.play()
+  }
+}
 
 /****************** Event Listeners ****************************/
 window.addEventListener("load", showStartScreen())

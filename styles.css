@@ -173,14 +173,17 @@ h3.score {
     width: 300px;
     position: relative;
   }
-  .modal h2 {
+  .modal p {
     font-family: "PressStart2P";
     color: palevioletred;
   }
   .loser-gif {
     width: 600px;
+    display: none;
   }
-  
+  .congrats-gif {
+    display: none;
+  }
   .close-modal {
     position: absolute;
     top: 1rem;
